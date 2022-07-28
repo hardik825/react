@@ -11,7 +11,7 @@ export default function TextForm(props) {
     setText(newText);
   };
   const handleClearClick = () => {
-    let newText = '';
+    let newText = "";
     setText(newText);
   };
   const handleOnChange = (event) => {
@@ -19,6 +19,16 @@ export default function TextForm(props) {
     setText(event.target.value);
   };
 
+  const handleCopy = () => {
+    var text = document.getElementById("mybox");
+    text.select();
+    navigator.clipboard.writeText(text.value);
+  };
+
+  const handleExtraSpaces = () => {
+    let newText = text.split(/[ ]+/)
+    setText(newText.join(" "))
+  }
   const [text, setText] = useState("");
   return (
     <>
@@ -40,7 +50,13 @@ export default function TextForm(props) {
           Convert to Lovercase
         </button>
         <button className="btn btn-primary mx-2" onClick={handleClearClick}>
-          Convert to Lovercase
+          Clear Text
+        </button>
+        <button className="btn btn-primary mx-2" onClick={handleCopy}>
+          Copy Text
+        </button>
+        <button className="btn btn-primary mx-2" onClick={handleExtraSpaces}>
+          ExtraSpaces Text
         </button>
       </div>
       <div className="container my-3">
