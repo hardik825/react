@@ -26,13 +26,16 @@ export default function TextForm(props) {
   };
 
   const handleExtraSpaces = () => {
-    let newText = text.split(/[ ]+/)
-    setText(newText.join(" "))
-  }
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "));
+  };
   const [text, setText] = useState("");
   return (
     <>
-      <div className="container">
+      <div
+        className="container"
+        style={{ color: props.mode === "dark" ? "white" : "#022641fa" }}
+      >
         <h1>{props.heading}</h1>
         <div className="mb-3">
           <textarea
@@ -40,6 +43,10 @@ export default function TextForm(props) {
             id="mybox"
             value={text}
             onChange={handleOnChange}
+            style={{
+              backgroundColor: props.mode === "light" ? "white" : "grey",
+              color: props.mode === "dark" ? "white" : "#022641fa",
+            }}
             rows="8"
           ></textarea>
         </div>
@@ -59,14 +66,17 @@ export default function TextForm(props) {
           ExtraSpaces Text
         </button>
       </div>
-      <div className="container my-3">
+      <div
+        className="container my-3"
+        style={{ color: props.mode === "dark" ? "white" : "#022641fa" }}
+      >
         <h1>Your text summary</h1>
         <p>
           {text.split(" ").length} words and {text.length} characters
         </p>
         <p>{0.008 * text.split(" ").length} Minutes Read</p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>{text.length>0?text:"Enter something in the textbox above to previwe it here"}</p>
       </div>
     </>
   );
